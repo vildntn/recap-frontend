@@ -1,0 +1,17 @@
+<li class="list-group-item active" aria-current="true" style="text-align: center;" style="margin-top: 3%;" >RENTALS</li>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Customer Name </th>
+            <th>Brand</th>
+            <th>Rent Date</th>
+            <th>Return Date</th>
+        </tr>
+    </thead>
+    <tr *ngFor="let rental of rentals">
+        <td>{{rental.customerName}}</td>
+        <td>{{rental.brandName}}</td>
+        <td>{{rental.rentDate}}</td>
+        <td>{{rental.returnDate}}</td>        
+    </tr>
+</table>
