@@ -13,11 +13,11 @@ export class CustomerComponent implements OnInit {
   constructor(private customerService:CustomerService) { }
 
   ngOnInit(): void {
-    this.getBrands();
+    this.getCustomers();
   }
 
-  getBrands(){
-     this.customerService.getBrands().subscribe(response=>{
+  getCustomers(){
+     this.customerService.getCustomers().subscribe(response=>{
        this.customers=response.data
 
      })
