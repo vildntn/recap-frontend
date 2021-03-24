@@ -1,0 +1,42 @@
+<li class="list-group-item active" aria-current="true" style="text-align: center;" style="margin-top: 2%; margin-bottom:2%;">CARS</li>
+<div class="row">
+    <div class="card" *ngFor="let car of carDetails" >
+    
+        <div class="card-body" style="width: 18rem;" >
+          <h5 class="card-title">{{car.brandName}}</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+            <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="10000">
+                    <img src="{{imageUrl}}{{getCarImage(car)}}" class="d-block w-100"    style="width: 450px; height: 600px" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="{{imageUrl}}{{getCarImage(car)}}" class="d-block w-100"    style="width: 450px; height: 600px" alt="...">
+                  </div>
+                
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"  data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"  data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <li class="list-group-item">Daily Price: {{car.dailyPrice |currency}}</li>
+              <li class="list-group-item">Color: {{car.colorName}}</li>
+              <li class="list-group-item">Description: {{car.description}}</li>
+              <div class="card-body d-grid gap-2 mx-auto">
+                <button type="button" routerLink = "/car/payment/{{car.carId}}"  class="btn btn-primary">Kirala</button>
+              </div>
+              <!-- <li class="list-group-item">Brand: {{car.brandId}}</li> -->
+          <!-- <li class="list-group-item">Brand: {{car.brandId}}</li> -->
+        </ul>
+        <!-- <div class="card-body d-grid gap-2 mx-auto">
+            <button type="button" routerLink = "/carDetails/{{car.carId}}"  class="btn btn-primary">Details</button>
+          </div> -->
+
+    </div>
+    </div>

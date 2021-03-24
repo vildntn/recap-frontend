@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
 import { CarImage } from 'src/app/models/carImage';
+import { Color } from 'src/app/models/color';
 import { CarImageService } from 'src/app/services/car-image.service';
 import { CarService } from 'src/app/services/car.service';
 
@@ -13,8 +15,11 @@ import { CarService } from 'src/app/services/car.service';
 export class CarComponent implements OnInit {
 
   cars:Car[]=[];
+  brands:Brand[]=[];
+  colors:Color[]=[];
   dataLoaded:false;
   carImages:CarImage[]=[];
+  imageUrl="https://localhost:44369/"
 
   // carImages:string;
   constructor(private carService:CarService,private activatedRoute:ActivatedRoute, private carImageService:CarImageService) { }
@@ -37,7 +42,7 @@ export class CarComponent implements OnInit {
   getCars(){
      this.carService.getCars().subscribe(response=>{
        this.cars=response.data;
-      //  this.setCarImages(this.cars);
+      this.setCarImages(this.cars);
        
      })
   }
@@ -53,20 +58,30 @@ export class CarComponent implements OnInit {
     this.cars=response.data;
   })
 }
-
-getCarImages(){
-  this.carImageService.getCarImages().subscribe(response=>{
-    this.carImages=response.data;
+   getCarImages(carId:number){
+      this.carImageService.getCarImagesById(carId).subscribe(response=>{
+      this.carImages=response.data;
   })
 }
 
-// setCarImages(cars: Car[]){
-//   cars.forEach(car => {
-//     this.carImageService.getCarImagesById(car.carId).subscribe(response => {
-//       car.imagePath = "http://localhost:44369/" + response.data[0].imagePath;
-//     })
-//    })
-//  }
+
+
+setCarImages(cars: Car[]){
+  cars.forEach(car => {
+    this.carImageService.getCarImagesById(car.carId).subscribe(response => {
+      car.imagePath = response.data[0].imagePath;
+    })
+   })
+ }
+ getCarImage(car:Car){
+
+  if(car.imagePath){
+    return car.imagePath
+  }
+  else{
+    return 'CarImages/rentacars.jpg'
+  }
+}
 
 
 }
