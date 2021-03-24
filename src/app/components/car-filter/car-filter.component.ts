@@ -40,19 +40,4 @@ export class CarFilterComponent implements OnInit {
     })
   }
 
-  selectedBrand(brandId:number){
-    if(this.brandIdFilter==brandId){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  selectedColor(colorId:number){
-    if(this.colorIdFilter==colorId){
-      return true;
-    }else{
-      return false;
-    }
-  }
 }
