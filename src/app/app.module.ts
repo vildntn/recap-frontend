@@ -17,6 +17,7 @@ import { FilterColorPipePipe } from './pipes/filter-color-pipe.pipe';
 import { PaymentComponent } from './components/payment/payment.component';
 import { CarFilterComponent } from './components/car-filter/car-filter.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,

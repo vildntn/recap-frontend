@@ -1,4 +1,9 @@
-
+<div class="row">
+  <div class="col-md-3">
+    <app-brand></app-brand>
+    <app-color></app-color>
+  </div>
+  <div class="col-md-9">
 <li class="list-group-item active" aria-current="true" style="text-align: center;" style="margin-top: 2%; margin-bottom:2%;">CARS</li>
 <app-car-filter></app-car-filter>
 <div class="row">
@@ -16,6 +21,9 @@
         <div class="card-body d-grid gap-2 mx-auto">
             <button type="button" routerLink = "/carDetails/{{car.carId}}"  class="btn btn-primary">Details</button>
           </div>
-          
     </div>
     </div>
+  </div>
+</div>
+
+
