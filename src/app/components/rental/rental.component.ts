@@ -1,5 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { Car } from 'src/app/models/car';
+import { Customer } from 'src/app/models/customer';
 import { Rental } from 'src/app/models/rental';
+import { ResponseModel } from 'src/app/models/responseModel';
+import { CustomerService } from 'src/app/services/customer.service';
 import { RentalService } from 'src/app/services/rental.service';
 
 @Component({
@@ -11,17 +18,49 @@ export class RentalComponent implements OnInit {
 
   
   rentals:Rental[]=[];
-  constructor(private rentalService:RentalService) { }
+  customers:Customer[]=[];
+  rentalAddForm:FormGroup;
+  rentDateFilter:Date;
+  customerIdFilter:number;
+  returnDateFilter:Date;
+  @Input() car: Car;
+
+
+  
+  constructor(private rentalService:RentalService, 
+    private toastrService:ToastrService,
+    private router:Router,
+    private customerService:CustomerService) { }
 
   ngOnInit(): void {
-    this.getRentals();
+    this.getCustomer()
+  }
+  getCustomer() {
+    this.customerService.getCustomers().subscribe((response) => {
+      this.customers = response.data;
+      console.log(response.data);
+    });
+  }
+  getDate(day : number){
+    var today= new Date();
+    today.setDate(today.getDate()+day);
+    return today.toISOString().slice(0,10)
   }
 
   getRentals(){
-     this.rentalService.getRentals().subscribe(response=>{
-       this.rentals=response.data
+    let newrental:Rental={
+      carId:this.car.carId,
+      brandName:this.car.brandName,
+      colorName:this.car.colorName,
+      rentDate:this.rentDateFilter,
+      returnDate:this.returnDateFilter,
+      customerId: parseInt(this.customerIdFilter.toString()),
+    }
+     this.rentalService.addRental(newrental).subscribe(response=>{
+       this.toastrService.success(" Rental is successful.", this.car.brandName);
 
      })
+     this.router.navigate(['/payment', JSON.stringify(newrental)]);
   }
 
  

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { Color } from 'src/app/models/color';
 import { Customer } from 'src/app/models/customer';
@@ -17,11 +18,11 @@ export class CarFilterComponent implements OnInit {
   customers:Customer[]=[]
   brandIdFilter:number;
   colorIdFilter:number;
-  constructor(private brandService:BrandService, private colorService:ColorService) { }
+  constructor(private brandService:BrandService, private activatedRoute:ActivatedRoute,private colorService:ColorService) { }
 
   ngOnInit(): void {
-    this.getBrands();
-    this.getColors();
+   this.getBrands();
+   this.getColors();
   }
 
 
@@ -31,6 +32,7 @@ export class CarFilterComponent implements OnInit {
       //console.log(response.data)
     })
   }
+  
 
 
   getColors(){
@@ -39,5 +41,9 @@ export class CarFilterComponent implements OnInit {
       console.log(response.data)
     })
   }
+
+  
+
+
 
 }

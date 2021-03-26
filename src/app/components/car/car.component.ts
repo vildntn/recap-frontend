@@ -31,6 +31,8 @@ export class CarComponent implements OnInit {
       }
         else if(params["colorId"]){
           this.getCarsByColorId(params["colorId"])
+        }else if(params["brandId"]&& params["colorId"]){
+          this.getCarFilter(params["brandId"],params["colorId"])
         }
       else{
         this.getCars()
@@ -38,7 +40,11 @@ export class CarComponent implements OnInit {
       }
     })
   }
-
+   getCarFilter(brandId:number,colorId:number){
+     this.carService.getCarsByBrandAndColor(brandId,colorId).subscribe(response=>{
+       this.cars=response.data;
+     })
+   }
   getCars(){
      this.carService.getCars().subscribe(response=>{
        this.cars=response.data;
@@ -82,6 +88,5 @@ setCarImages(cars: Car[]){
     return 'CarImages/rentacars.jpg'
   }
 }
-
 
 }
