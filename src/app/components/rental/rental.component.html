@@ -52,9 +52,7 @@
         <div class="form-group row mb-2">
           <div class="col-8">
             <input
-              class="form-control"
-              min="{{ getDate(1) }}"
-              value="{{ getDate(1) }}"
+              class="form-control"       
               type="date"
               [(ngModel)]="rentDateFilter"
             />
@@ -67,10 +65,8 @@
           <div class="col-8">
             <input
               class="form-control"
-              type="date"
-              min="{{ getDate(2) }}"
-              value="{{ getDate(2) }}"
-              [(ngModel)]="returnDateFilter"
+              type="date"        
+         [(ngModel)]="returnDateFilter"
             />
           </div>
         </div>
