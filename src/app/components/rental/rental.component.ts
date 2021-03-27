@@ -41,11 +41,6 @@ export class RentalComponent implements OnInit {
       console.log(response.data);
     });
   }
-  getDate(day : number){
-    var today= new Date();
-    today.setDate(today.getDate()+day);
-    return today.toISOString().slice(0,10)
-  }
 
   getRentals(){
     let newrental:Rental={
