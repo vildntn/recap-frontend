@@ -3,7 +3,8 @@ export interface FakeCreditCard{
     nameOnTheCard:string,
     cardNumber:string,
     cardCvv:string,
-    expiration:string,
+    expirationMonth:string,
+    expirationYear:string,
     money:number
 
 }

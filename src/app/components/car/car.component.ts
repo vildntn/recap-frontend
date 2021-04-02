@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Brand } from 'src/app/models/brand';
 import { Car } from 'src/app/models/car';
+import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { CarImage } from 'src/app/models/carImage';
 import { Color } from 'src/app/models/color';
 import { CarImageService } from 'src/app/services/car-image.service';
@@ -14,7 +15,7 @@ import { CarService } from 'src/app/services/car.service';
 })
 export class CarComponent implements OnInit {
 
-  cars:Car[]=[];
+  cars:CarDetailDto[]=[];
   brands:Brand[]=[];
   colors:Color[]=[];
   dataLoaded:false;
@@ -72,14 +73,14 @@ export class CarComponent implements OnInit {
 
 
 
-setCarImages(cars: Car[]){
+setCarImages(cars: CarDetailDto[]){
   cars.forEach(car => {
     this.carImageService.getCarImagesById(car.carId).subscribe(response => {
       car.imagePath = response.data[0].imagePath;
     })
    })
  }
- getCarImage(car:Car){
+ getCarImage(car:CarDetailDto){
 
   if(car.imagePath){
     return car.imagePath

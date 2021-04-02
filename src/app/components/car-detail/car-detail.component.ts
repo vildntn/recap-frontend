@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
+import { CarDetailDto } from 'src/app/models/carDetailDto';
 import { CarImage } from 'src/app/models/carImage';
 import { CarDetailService } from 'src/app/services/car-detail.service';
 import { CarImageService } from 'src/app/services/car-image.service';
@@ -14,7 +15,7 @@ export class CarDetailComponent implements OnInit {
 
   constructor( private activatedRoute:ActivatedRoute,private carDetailService:CarDetailService, private carImageService:CarImageService) {}
 
-  carDetails:Car[];
+  carDetails:CarDetailDto[];
 
   carImages:CarImage[]=[];
   imageUrl="https://localhost:44369/"
@@ -40,7 +41,7 @@ export class CarDetailComponent implements OnInit {
     this.carImages=response.data;
   })
 }
-getCarImage(car:Car){
+getCarImage(car:CarDetailDto){
 
   if(car.imagePath){
     return car.imagePath

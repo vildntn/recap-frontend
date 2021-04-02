@@ -1,0 +1,31 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header"></div>
+            <div class="card-body">
+                <form [formGroup]="brandUpdateForm">
+                    <div class="row justify-content-md-center">
+                        <div class="col-sm-2">
+                            <label for="brandId">Brand No</label>
+                            <input type="text" class="form-control"  id="brandId" name="brandId" formControlName="brandId"  readonly>
+                          </div>
+                          <div class="col-sm-4">
+                            <label for="brandName">Brand </label>
+                            <input type="text" class="form-control" id="brandName" formControlName="brandName" placeholder="brandName" >
+                          </div>
+                      </div>
+                      <div class="row justify-content-md-center mt-3">
+                          <div class="d-grid gap-2 col-4 mx-auto">
+                            <button type="button" class="btn btn-warning " (click)="updateBrand()">Update
+                            </button>
+                          </div>
+                       
+                    </div>
+                   
+                </form>
+              
+               
+            </div>
+        </div>
+    </div>
+</div>

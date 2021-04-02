@@ -51,11 +51,18 @@ export class RentalComponent implements OnInit {
       returnDate:this.returnDateFilter,
       customerId: parseInt(this.customerIdFilter.toString()),
     }
-     this.rentalService.addRental(newrental).subscribe(response=>{
-       this.toastrService.success(" Rental is successful.", this.car.brandName);
-
-     })
+     this.rentalService.checkIfCarUsage(newrental).subscribe(
+       (response)=>{
+        console.log(response.message);
+       this.toastrService.success(response.message.toString(), this.car.brandName);
+    
      this.router.navigate(['/payment', JSON.stringify(newrental)]);
+    },
+    (error) => {
+      this.toastrService.error('The car cannot be rented on the requested dates.','Kiralama Başarısız');
+      this.router.navigate(['/cars', JSON.stringify(newrental)]);
+    })
+    
   }
 
  

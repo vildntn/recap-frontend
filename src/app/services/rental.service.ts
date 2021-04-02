@@ -17,10 +17,16 @@ export class RentalService {
     let newPath=this.apiUrl+"rentals/getrentaldetails"
     return this.httpClient.get<ListResponseModel<Rental>>(this.apiUrl)
   }
+  checkIfCarUsage(rental:Rental):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"rentals/checkifcarusage"
+    return this.httpClient.post<ResponseModel>(newPath,rental)
+  }
+
 
   addRental(rental:Rental):Observable<ResponseModel>{
     let newPath=this.apiUrl+"rentals/add"
     return this.httpClient.post<ResponseModel>(newPath,rental)
+    
   }
   
 }

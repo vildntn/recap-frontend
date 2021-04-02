@@ -1,0 +1,60 @@
+<div class="content">
+    <div class="col-md-12">
+        <div class="card-header">Car Details</div>
+            <div class="card-body">
+                <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Car No</th>
+                                <th>Brand</th>
+                                <th>Color</th>
+                                <th>Model Year</th>
+                                <th>Daily Price</th>
+                                <th>Description</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let car of cars">
+                                <td>{{car.carId}}</td>
+                                <td>{{car.brandName}}</td>
+                                <td>{{car.colorName}}</td>     
+                                <td>{{car.modelYear}}</td> 
+                                <td>{{car.dailyPrice}}</td>        
+                                <td>{{car.description}}</td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <!-- Button trigger modal -->
+                                      <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                              Delete
+                                        </button>
+                                        <th scope="row"></th>
+                                        <button type="button" routerLink = "/cars/update/{{car.carId}}" class="btn btn-warning">Update</button>
+                                    </div>
+                                   
+                                </td>
+                            </tr>
+                        </tbody>
+                        
+                  </table>
+                              <!-- Modal -->
+   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Attention</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h5>You cannot undo the action you want to do. Are you sure you want to delete the car?</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+            </div>      
+    </div>
+</div>

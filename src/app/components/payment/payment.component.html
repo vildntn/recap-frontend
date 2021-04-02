@@ -16,7 +16,7 @@
       }
     </style>
 
-<div class="row g-5 mt-3">
+<div class="row g-5 mt-3" >
   <div class="col-md-5 col-lg-4 order-md-last">
     <h4 class="d-flex justify-content-between align-items-center mb-3">
       <span class="text-primary">Your cart</span>
@@ -56,7 +56,7 @@
         <strong>$20</strong>
       </li>
     </ul>
-<!-- 
+       <!-- 
     <form class="card p-2">
       <div class="input-group">
         <input type="text" class="form-control" placeholder="Promo code">
@@ -67,7 +67,7 @@
   <div class="col-md-7 col-lg-8">
     <form class="needs-validation" novalidate="">
 
-<!-- 
+    <!-- 
 
       <hr class="my-4"> -->
 
@@ -87,11 +87,12 @@
           <label class="form-check-label" for="paypal">PayPal</label>
         </div>
       </div> -->
+    
 
       <div class="row gy-3">
         <div class="col-md-6">
           <label for="cc-name" class="form-label">Name on card</label>
-          <input type="text" class="form-control" id="cc-name" placeholder="" required="">
+          <input type="text" class="form-control" id="cc-name" placeholder="" required="" [(ngModel)]="NameOnTheCard">
           <small class="text-muted">Full name as displayed on card</small>
           <div class="invalid-feedback">
             Name on card is required
@@ -100,7 +101,7 @@
 
         <div class="col-md-6">
           <label for="cc-number" class="form-label">Credit card number</label>
-          <input type="text" class="form-control" id="cc-number" placeholder="" required="">
+          <input type="text" class="form-control" id="cc-number" placeholder="" required="" [(ngModel)]="CardNumber" >
           <div class="invalid-feedback">
             Credit card number is required
           </div>
@@ -108,7 +109,7 @@
 
         <div class="col-md-3">
           <label for="cc-expiration" class="form-label">Expiration </label>
-          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" [(ngModel)]="ExpirationMonth">
           <div class="invalid-feedback">
             Expiration date required
           </div>
@@ -117,14 +118,14 @@
 
         <div class="col-md-3">
           <label for="cc-expiration" class="form-label">Expiration</label>
-          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="">
+          <input type="text" class="form-control" id="cc-expiration" placeholder="" required="" [(ngModel)]="ExpirationYear">
           <div class="invalid-feedback">
             Expiration date required
           </div>
         </div>
         <div class="col-md-3">
           <label for="cc-cvv" class="form-label">CVV</label>
-          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="">
+          <input type="text" class="form-control" id="cc-cvv" placeholder="" required="" [(ngModel)]="CardCvv">
           <div class="invalid-feedback">
             Security code required
           </div>
@@ -134,6 +135,11 @@
       <div class="mb-5 col-md-12">
          </div>
       <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+      <div class="card-footer">
+        <div class="row">
+            <button (click)="payment()" routerLink = "/cars" class="btn btn-success"><strong>{{ amount | currency }}  PAY </strong></button>
+        </div>
+    </div>
     </form>
   </div>
 </div>

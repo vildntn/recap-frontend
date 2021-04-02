@@ -1,0 +1,71 @@
+<div class="content">
+    <div class="col-md-12">
+      <div class="panel-footer text-center">
+        <li class="list-group-item active" aria-current="true" style="text-align: center;" style="margin-top: 2%;">Brand List</li>
+      </div>
+        
+      <div *ngIf="dataLoaded == false" class="spinner-border text-primary" role="status" >
+        <span class="visually-hidden">Loading...</span>
+      </div>
+        
+      <table  id="brandsTable" class="table table-hover table-bordered" >
+        <thead>
+          <tr>
+            <th>Brand No</th>
+            <th>Brand Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let brand of brands">
+            <td>{{ brand.brandId }}</td>
+            <td>{{ brand.brandName }}</td>
+            <td>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" routerLink = "/brands/update/{{brand.brandId}}" data-bs-target="#updateBrandModal" >Update
+                      </button>
+                      <th scope="row"></th>
+                      <button type="button" class="btn btn-danger"> Delete
+                      </button>
+                </div>
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div  class="d-grid gap-2 col-6 mx-auto">
+        <button type="button" data-func="dt-add" class="btn btn-success " data-bs-toggle="modal" data-bs-target="#addBrandModal">
+          <span class="glyphicon glyphicon-plus" aria-hidden="true"  >Add New Brand</span>
+        </button>
+    </div>
+                                    <!--addBrandModal-->
+  <div class="modal fade" id="addBrandModal" tabindex="-1" aria-labelledby="addBrandModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addBrandModalLabel">Add Brand</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="brandAddForm" >
+            <div class="row">
+              <div class="col-8">
+                <label for="brandName">Brand</label>
+                <input type="text" class="form-control" id="brandName" formControlName="brandName" placeholder="brandName">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button class="btn btn-danger" (click)="addBrand()" data-bs-dismiss="modal" >Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--end addBrandModal-->
+    </div>
+  </div>
+  
+  
+
