@@ -54,7 +54,7 @@ export class RentalComponent implements OnInit {
      this.rentalService.checkIfCarUsage(newrental).subscribe(
        (response)=>{
         console.log(response.message);
-       this.toastrService.success(response.message.toString(), this.car.brandName);
+       this.toastrService.success(response.message, this.car.brandName);
     
      this.router.navigate(['/payment', JSON.stringify(newrental)]);
     },

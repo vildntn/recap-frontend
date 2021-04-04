@@ -5,6 +5,6 @@ export interface FakeCreditCard{
     cardCvv:string,
     expirationMonth:string,
     expirationYear:string,
-    money:number
+    amount:number
 
 }
