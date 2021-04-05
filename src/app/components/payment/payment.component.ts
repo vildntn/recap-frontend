@@ -66,7 +66,7 @@ export class PaymentComponent implements OnInit {
      if(this.paymentAddForm.valid){
        let paymentModel=Object.assign({ amount: this.car.dailyPrice },this.paymentAddForm.value);
        console.log(this.amount)
-       this.paymentService.addCreditCard(paymentModel).subscribe(
+       this.paymentService.isCreditCardExist(paymentModel).subscribe(
         (response) => {
           this.rentalService.addRental(this.rental).subscribe(response=>{
              this.toastr.success(response.message)
@@ -77,12 +77,14 @@ export class PaymentComponent implements OnInit {
         },
         (responseError) => {
           console.log(responseError);
+          this.toastr.error(responseError.error.message,"Attention")
           if(responseError.error.ValidationErrors.length>0){
             for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
               this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage,"Validation Error");
             }
           }
         }
+  
       );
     }
     else{
