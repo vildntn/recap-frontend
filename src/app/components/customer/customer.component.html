@@ -7,13 +7,15 @@
           <th>Customer Name</th>
           <th>Email</th>
           <th>Company Name</th>
+          <th>Minimum Findex Score</th>
       </tr>
   </thead>
   <tr *ngFor="let customer of customers">
       <td>{{customer.id}}</td>
       <td>{{customer.customerName}}</td>     
       <td>{{customer.email}}</td> 
-      <td>{{customer.companyName}}</td>        
+      <td>{{customer.companyName}}</td>  
+      <td>{{customer.minFindexScore}}</td>         
   
   </tr>
 </table>

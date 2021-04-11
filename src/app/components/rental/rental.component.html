@@ -16,6 +16,7 @@
   aria-labelledby="exampleModalLabel"
   aria-hidden="true"
 >
+<form [formGroup]="rentalAddForm">
   <div class="modal-dialog">
     <div class="modal-content">
 
@@ -33,13 +34,13 @@
 
       <div class="modal-body">
 
-        <label for="rent-date-input" class="col-4 col-form-label"
-        >Customer :</label>
+        <label for="rent-date-input" class="col-4 col-form-label">Customer :</label>
         <div class="form-group row mb-2">
           <div class="col-8">
-            <select class="form-select" [(ngModel)]="customerIdFilter">
-              <option [value]="customer.id"
+            <select class="form-select"  [(ngModel)]="customerIdFilter"  formControlName="customerId">
+              <option value="{{customer.id}}"
                 *ngFor="let customer of customers"
+               
               >
               {{ customer.customerName }}
               </option>
@@ -52,6 +53,7 @@
         <div class="form-group row mb-2">
           <div class="col-8">
             <input
+            formControlName="rentDate"
               class="form-control"       
               type="date"
               [(ngModel)]="rentDateFilter"
@@ -64,6 +66,7 @@
         <div class="form-group row">
           <div class="col-8">
             <input
+            formControlName="returnDate"
               class="form-control"
               type="date"        
          [(ngModel)]="returnDateFilter"
@@ -73,10 +76,14 @@
 
       </div>
       <div class="modal-footer">
-        <button data-bs-dismiss="modal" (click)="getRentals()" type="button" class=" btn btn-primary">
+        <button data-bs-dismiss="modal" (click)="addRentals()" type="button" class=" btn btn-primary">
           Rent
         </button>
       </div>
     </div>
-  </div>
+  <!-- </div> -->
 </div>
+
+ 
+</form>
+ 

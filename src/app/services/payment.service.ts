@@ -14,12 +14,17 @@ export class PaymentService {
   constructor(private httpClient:HttpClient) { }
 
   getCreditCards():Observable<ListResponseModel<FakeCreditCard>>{
-    let newPath=this.apiUrl+"fakecreditCard/getall"
+    let newPath=this.apiUrl+"fakecreditCards/getall"
     return this.httpClient.get<ListResponseModel<FakeCreditCard>>(this.apiUrl)
   }
 
   isCreditCardExist(fakecreditCard:FakeCreditCard):Observable<ResponseModel>{
-    let newPath=this.apiUrl+"fakecreditCards/iscreditcardexist"
+    let newPath=this.apiUrl+"payments/iscreditcardexist"
     return this.httpClient.post<ResponseModel>(newPath,fakecreditCard)
+  }
+
+  addCreditCard(fakeCreditCard:FakeCreditCard):Observable<ResponseModel>{
+    let newPath=this.apiUrl+"fakecreditCards/add"
+    return this.httpClient.post<ResponseModel>(newPath,fakeCreditCard)
   }
 }

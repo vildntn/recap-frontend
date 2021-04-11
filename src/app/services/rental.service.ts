@@ -22,6 +22,12 @@ export class RentalService {
     return this.httpClient.post<ResponseModel>(newPath,rental)
   }
 
+  checkIfMinFindexScoreEnough(rental:Rental):Observable<ResponseModel>{
+    //   let newPath=this.apiUrl+"rentals/checkifminfindexscoreenough?customerId="+customerId
+    let newPath=this.apiUrl+"rentals/checkifminfindexscoreenough"
+    return this.httpClient.post<ResponseModel>(newPath,rental)
+  }
+
 
   addRental(rental:Rental):Observable<ResponseModel>{
     let newPath=this.apiUrl+"rentals/add"

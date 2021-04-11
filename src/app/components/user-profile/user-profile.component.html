@@ -1,0 +1,60 @@
+<div class="content">
+    <div class="row mt-5">
+    <div class="col-md-3">
+        <img class="d-block mx-auto mb-4" src="/assets/indir.png" alt="" >
+    </div>
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header">
+                <h3>Profile</h3>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="userProfileForm">
+                    <div class="mb-3">
+                        <label for="userId">User No</label>
+                        <div class=form-group>
+                            <input type="number" 
+                            id="userId" 
+                            formControlName="userId" class="form-control" 
+                            placeholder="User No" readonly/>
+                        </div>
+                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="firstName" *ngIf="users">First Name</label>
+                        <div class=form-group>
+                            <input type="text" 
+                            id="firstName" 
+                            formControlName="firstName" class="form-control" 
+                            placeholder="First Name" readonly/>
+                        </div>
+                        
+                    </div>
+                 
+                    <div class="mb-3">
+                        <label for="lastName" *ngIf="users">Last Name</label>
+                        <div class=form-group>
+                            <input type="text" 
+                            id="lastName" 
+                            formControlName="lastName" class="form-control" 
+                            placeholder="Last Name" readonly/>
+                        </div>
+                        
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" *ngIf="users">Email</label>
+                        <div class=form-group>
+                           <input type="email" 
+                            id="email" 
+                            formControlName="email" class="form-control" 
+                            placeholder="Email" readonly/>
+                        </div>
+                        
+                    </div>
+                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

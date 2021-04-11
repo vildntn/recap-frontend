@@ -61,26 +61,48 @@ export class PaymentComponent implements OnInit {
        cardCvv:["",Validators.required]
      })
    }
+   addcreditCard(){
+     if(this.paymentAddForm.valid){
+       let creditCardModel=Object.assign({amount: this.car.dailyPrice},this.paymentAddForm.value);
+       this.paymentService.addCreditCard(creditCardModel).subscribe((response)=>{
+        this.toastr.success(response.message,"Successful");
+        this.router.navigate([""]);
+       },(responseError)=>{
+        this.toastr.success(responseError.error.message,"Successful");
+       })
+     } else{
+      this.toastr.warning("Missing Form","Attention");
+    }
+   }
  
    addPayment(){
      if(this.paymentAddForm.valid){
        let paymentModel=Object.assign({ amount: this.car.dailyPrice },this.paymentAddForm.value);
-       console.log(this.amount)
+       //console.log(this.amount)
        this.paymentService.isCreditCardExist(paymentModel).subscribe(
-        (response) => {
-          this.rentalService.addRental(this.rental).subscribe(response=>{
-             this.toastr.success(response.message)
+        (creditCardExistResponse) => {
+          this.toastr.success(creditCardExistResponse.message)
+          this.paymentService.addCreditCard(paymentModel).subscribe((addCreditCardResponse)=>{
+            this.toastr.success(addCreditCardResponse.message)
+          },(addCreditCardResponseError)=>{
+
           })
-          this.toastr.success(response.message,"Successful");
-          this.router.navigate([""]);
+          this.rentalService.addRental(this.rental).subscribe(addRentalResponse=>{
+             this.toastr.success(addRentalResponse.message)
+          })
+          this.toastr.success(creditCardExistResponse.message,"Successful");
+          setTimeout(() => {
+            this.router.navigate([""]);
+          }, 3000);
+        
        
         },
-        (responseError) => {
-          console.log(responseError);
-          this.toastr.error(responseError.error.message,"Attention")
-          if(responseError.error.ValidationErrors.length>0){
-            for (let i = 0; i < responseError.error.ValidationErrors.length; i++) {
-              this.toastr.error(responseError.error.ValidationErrors[i].ErrorMessage,"Validation Error");
+        (creditCardNotExistResponseError) => {
+          console.log(creditCardNotExistResponseError);
+          this.toastr.error(creditCardNotExistResponseError.error.message,"Attention")
+          if(creditCardNotExistResponseError.error.ValidationErrors.length>0){
+            for (let i = 0; i < creditCardNotExistResponseError.error.ValidationErrors.length; i++) {
+              this.toastr.error(creditCardNotExistResponseError.error.ValidationErrors[i].ErrorMessage,"Validation Error");
             }
           }
         }
