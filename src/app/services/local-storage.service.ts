@@ -24,10 +24,7 @@ export class LocalStorageService {
     let result=localStorage.getItem(key);
     return result;
   }
-  setCurrentUser(currentUser: User) {
-    localStorage.setItem(this.user, JSON.stringify(currentUser));
- }
-
+ 
   removeItem(key:any){
      localStorage.removeItem(key)
 

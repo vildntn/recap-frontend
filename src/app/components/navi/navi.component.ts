@@ -32,35 +32,18 @@ export class NaviComponent implements OnInit {
   }
 
  userId=this.localStorageService.currentUser.nameid;
- userName=localStorage.getItem("currentUser");
+
 
  
 
- isloggedIn(){
+ isLoggedIn(){
      if(this.localStorageService.getItem("token")){
        return true;
      }else{return false;}
  }
 
-  isAdmin(){
-  //   if(this.localStorageService.currentUser.role.length>0){
-  //   for (let i = 0; i < this.localStorageService.currentUser.role.length; i++) {
-  //     //return this.localStorageService.currentUser.role[i]=="admin" ? true:false;
-  //     if(this.localStorageService.currentUser.role[i]=="admin"){
-  //       return true
-  //     }
-      
-  //   }
-   
-  // }
-  // return false;
-  
-}
-  // isLoggedIn(){
-  //   let token=this.localStorageService.getItem();
-  //   return !this.helper.isTokenExpired(token);
 
-  // }
+ 
   logout(){
     this.localStorageService.logout();
     setTimeout(() => {

@@ -18,7 +18,7 @@ import { RentalService } from 'src/app/services/rental.service';
 export class RentalComponent implements OnInit {
 
   
-  rentals:Rental[]=[];
+  rentals:Rental[];
   customers:Customer[];
   rentalAddForm:FormGroup;
   rentDateFilter:Date;

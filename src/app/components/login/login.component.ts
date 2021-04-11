@@ -49,14 +49,7 @@ createLoginForm(){
     password:["", Validators.required]
   })
 }
-getUserInformation(email:string){
-  this.customerService.getUserByMail(email).subscribe(response=>{
-    this.user = response.data;
-    this.localStorageServis.setCurrentUser(this.user)
-  })
 
-    //this.currentUser=this.localStorageServis.currentUser;
-}
 
 login(){
   if(this.loginForm.valid){

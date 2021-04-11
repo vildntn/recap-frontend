@@ -42,7 +42,7 @@ export class PaymentComponent implements OnInit {
       if(params["rent"]){
         this.rental = JSON.parse(params['rent']);
         this.carId=this.rental.carId;
-        this.getCar(this.carId);
+        // this.getCar(this.carId);
         
        
 
@@ -114,26 +114,26 @@ export class PaymentComponent implements OnInit {
     }
   }
 
-  getTotalPrice() {
-    if (this.rental.returnDate != null) {
-      let dateRent = new Date(this.rental.returnDate.toString());
-      let dateReturn = new Date(this.rental.rentDate.toString());
-      let difference = (dateRent.getTime() - dateReturn.getTime());
-      let differenceOfDays = Math.ceil(difference / (1000 * 3600 * 24));
-      if (differenceOfDays == 0) {
-        differenceOfDays = 1;
-      }
-      this.amount = differenceOfDays * (this.car.dailyPrice + (this.car.dailyPrice * 8 / 100)); 
-      //calculate with VAT
-    }
-  }
-  getCar(carId:number) {
-    this.carService.getCarDetailsByCarId(carId).subscribe(response => {
-      this.car = response.data;
-      //console.log(this.car.dailyPrice)
-      this.getTotalPrice();
-    })
-  }
+  // getTotalPrice() {
+  //   if (this.rental.returnDate != null) {
+  //     let dateRent = new Date(this.rental.returnDate.toString());
+  //     let dateReturn = new Date(this.rental.rentDate.toString());
+  //     let difference = (dateRent.getTime() - dateReturn.getTime());
+  //     let differenceOfDays = Math.ceil(difference / (1000 * 3600 * 24));
+  //     if (differenceOfDays == 0) {
+  //       differenceOfDays = 1;
+  //     }
+  //     this.amount = differenceOfDays * (this.car.dailyPrice + (this.car.dailyPrice * 8 / 100)); 
+  //     //calculate with VAT
+  //   }
+  // }
+  // getCar(carId:number) {
+  //   this.carService.getCarDetailsByCarId(carId).subscribe(response => {
+  //     this.car = response.data;
+  //     //console.log(this.car.dailyPrice)
+  //     this.getTotalPrice();
+  //   })
+  // }
   
   
 }
