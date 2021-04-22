@@ -1,0 +1,15 @@
+/* html body {
+    background-color: rgba(0,0,0,1.00);
+
+} */
+
+.background-color {
+   /* min-height: 100vh;*/
+   background: image-url('/assets/sd61.jpg') no-repeat center center fixed;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
+   min-height: 100vh;
+   background-color: #ffffff;
+  }

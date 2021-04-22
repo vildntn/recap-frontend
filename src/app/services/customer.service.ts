@@ -18,17 +18,22 @@ export class CustomerService {
 
   getCustomers():Observable<ListResponseModel<Customer>>{
     let newPath=this.apiUrl+"getcustomerdetail"
-    return this.httpClient.get<ListResponseModel<Customer>>(this.apiUrl)
+    return this.httpClient.get<ListResponseModel<Customer>>(newPath)
 
   }
   getUserByMail(email:string):Observable<SingleResponseModel<User>>{
     let newPath=this.apiUrl+"getbymail?email="+email
-    return this.httpClient.get<SingleResponseModel<User>>(this.apiUrl)
+    return this.httpClient.get<SingleResponseModel<User>>(newPath)
 
   }
 
   getUsers(id:number):Observable<SingleResponseModel<User>>{
     let newPath=this.apiUrl+"getbyid?id="+id
-    return this.httpClient.get<SingleResponseModel<User>>(this.apiUrl)
+    return this.httpClient.get<SingleResponseModel<User>>(newPath)
+  }
+
+  getCustGetCustomerDetailById(userId:number):Observable<SingleResponseModel<Customer>>{
+    let newPath=this.apiUrl+"getcustomerdetailsbyid?userId="+userId
+    return this.httpClient.get<SingleResponseModel<Customer>>(newPath)
   }
 }

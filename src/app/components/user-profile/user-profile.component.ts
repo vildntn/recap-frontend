@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder,FormControl,FormGroup, Validators  } from "@angular/forms";
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Customer } from 'src/app/models/customer';
 import { User } from 'src/app/models/user';
 import { CustomerService } from 'src/app/services/customer.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
@@ -15,6 +16,7 @@ export class UserProfileComponent implements OnInit {
   userProfileForm:FormGroup;
   userId:number;
   users:User;
+  customers:Customer
 
   constructor(private formBuilder:FormBuilder,
     private localStorageService:LocalStorageService,
@@ -26,16 +28,23 @@ export class UserProfileComponent implements OnInit {
     this.activatedRoute.params.subscribe(params=>{
       if(params["id"]){
         this.userId=(params["id"]);
+        console.log(this.userId)
         this.createUserProfileForm(this.userId);
+        this.getUsersByUserId(this.userId)
  
       }
     })
  
   }
-  getUsersByUserId(id:number){
-    this.customerService.getUsers(id).subscribe(response=>{
-      this.users=response.data;
-    })
+  getUsersByUserId(userId:number){
+    this.customerService.getCustGetCustomerDetailById(this.userId).subscribe(response=>{
+      this.customers=response.data;
+    //   this.userProfileForm.setValue({
+    //      firstName:this.customers.firstName,
+    //      lastName:this.customers.lastName,
+    //      email:this.customers.email
+    //   });
+  })
  }
 
   createUserProfileForm(userId:number){
@@ -51,9 +60,9 @@ export class UserProfileComponent implements OnInit {
   {
     if(this.userProfileForm.valid){
        let userProfileModel=Object.assign({},this.userProfileForm.value)
-       userProfileModel.userId=parseInt(this.userId.toString());
-       //console.log(brandModel)
-       this.customerService.getUsers(userProfileModel).subscribe((response)=>{
+      //userProfileModel.userId=parseInt(this.userId.toString());
+      // console.log(userProfileModel.userId)
+       this.customerService.getCustGetCustomerDetailById(this.userId).subscribe((response)=>{
         this.toastrService.success(response.message,"Successful");
        },(responseError)=>{
          if(responseError.error.ValidationErrors.length>0){

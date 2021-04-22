@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CurrentUser } from 'src/app/models/currentUser';
-import { AuthService } from 'src/app/services/auth.service';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { JwtHelperService } from "@auth0/angular-jwt";
+
+
 
 @Component({
   selector: 'app-navi',
@@ -12,15 +13,15 @@ import { JwtHelperService } from "@auth0/angular-jwt";
   styleUrls: ['./navi.component.css']
 })
 export class NaviComponent implements OnInit {
-  currentUser:CurrentUser;
+  currentUser:CurrentUser=this.localStorageService.getUserInformation();
   helper=new JwtHelperService;
+  id=this.currentUser.userId;
 
  
   constructor(
-    private authService:AuthService,
     private localStorageService:LocalStorageService,
-    private router:Router,
-    private toastrService:ToastrService
+    private toastrService:ToastrService,
+    private activatedRoute:ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
@@ -28,18 +29,13 @@ export class NaviComponent implements OnInit {
   }
 
   getUserName():string{
-   return this.localStorageService.getItem("currentUser")
+   return this.currentUser.username;
   }
 
- userId=this.localStorageService.currentUser.nameid;
 
-
- 
 
  isLoggedIn(){
-     if(this.localStorageService.getItem("token")){
-       return true;
-     }else{return false;}
+    return this.localStorageService.loggedIn();
  }
 
 

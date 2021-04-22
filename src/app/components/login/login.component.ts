@@ -18,6 +18,7 @@ import { LocalStorageService } from 'src/app/services/local-storage.service';
 })
 export class LoginComponent implements OnInit {
    loginForm:FormGroup;
+   token:string;
    returnUrl:string;
   
    user:User;
@@ -56,11 +57,16 @@ login(){
      let loginModel=Object.assign({}, this.loginForm.value)
      this.authService.login(loginModel).subscribe(response=>{
        //console.log(response)
-       this.toastrService.info(response.message,"Success")
+       this.token=response.data.token
+       this.localStorageServis.setToken(this.token)
+       this.toastrService.info("Successful login","Success")
        this.router.navigateByUrl(this.returnUrl); //when login successful, redirect to returnUrl
-      this.localStorageServis.setToken(response.data.token)
-      console.log(this.localStorageServis.currentUser.username)
-      this.localStorageServis.getUserInformation()
+       setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+   
+      //this.localStorageServis.getUserInformation()
+      
 
 
 
