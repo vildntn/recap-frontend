@@ -64,13 +64,6 @@ login(){
        setTimeout(() => {
         window.location.reload();
       }, 1000);
-   
-      //this.localStorageServis.getUserInformation()
-      
-
-
-
-
      // console.log(this.localStorageServis.getItem())
       // console.log(this.authService.getUserInformation(this.currentUser))
 
