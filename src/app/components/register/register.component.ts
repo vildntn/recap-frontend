@@ -42,7 +42,6 @@ export class RegisterComponent implements OnInit {
         //console.log(response)
         this.toastrService.info(response.message,"Success")
         this.localStorageService.setToken(response.data.token)
-        this.toastrService.info("Successful Register","Success")
         this.router.navigateByUrl(this.returnUrl); //when register successful, redirect to returnUrl
         setTimeout(() => {
          window.location.reload();
